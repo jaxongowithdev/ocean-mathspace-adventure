@@ -330,13 +330,66 @@ const OceanGameScene = ({ onBackToMenu, difficulty }: OceanGameSceneProps) => {
 
       {/* Top HUD Bar */}
       <motion.div
-        className="absolute top-0 left-0 right-0 z-20 p-4"
+        className="absolute top-0 left-0 right-0 z-20 p-3 sm:p-4"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
       >
         <div className="max-w-6xl mx-auto">
-          <div className="bg-black/30 backdrop-blur-md rounded-2xl border border-white/20 p-4">
-            <div className="flex items-center justify-between">
+          <div className="bg-black/30 backdrop-blur-md rounded-2xl border border-white/20 p-3 sm:p-4">
+            {/* Mobile Layout */}
+            <div className="block sm:hidden space-y-3">
+              {/* Top row - Surface button and Reset */}
+              <div className="flex items-center justify-between">
+                <Button
+                  onClick={onBackToMenu}
+                  className="bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border-cyan-400/30 rounded-xl text-sm px-3 py-2"
+                >
+                  <ArrowLeft className="w-3 h-3 mr-1" />
+                  Surface
+                </Button>
+
+                <Button
+                  onClick={resetGame}
+                  className="bg-gray-500/20 hover:bg-gray-500/30 text-gray-300 border-gray-400/30 rounded-xl p-2"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                </Button>
+              </div>
+
+              {/* Middle row - Question info */}
+              <div className="flex items-center justify-center space-x-2">
+                <Badge className="bg-emerald-500/20 text-emerald-300 border-emerald-400/30 text-xs px-2 py-1">
+                  Q{problemsCompleted + 1}/10
+                </Badge>
+                <Badge className="bg-purple-500/20 text-purple-300 border-purple-400/30 capitalize text-xs px-2 py-1">
+                  {difficulty}
+                </Badge>
+              </div>
+
+              {/* Bottom row - Stats */}
+              <div className="flex items-center justify-center space-x-3">
+                <div className="bg-blue-500/20 rounded-lg px-3 py-1 border border-blue-400/30">
+                  <div className="flex items-center space-x-1">
+                    <Target className="w-3 h-3 text-blue-300" />
+                    <span className="text-blue-100 font-semibold text-sm">
+                      {score}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-orange-500/20 rounded-lg px-3 py-1 border border-orange-400/30">
+                  <div className="flex items-center space-x-1">
+                    <Clock className="w-3 h-3 text-orange-300" />
+                    <span className="text-orange-100 font-semibold text-sm">
+                      {timeLeft}s
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="hidden sm:flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Button
                   onClick={onBackToMenu}
