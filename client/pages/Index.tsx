@@ -124,7 +124,6 @@ const Index = () => {
     },
     { name: "Master Explorer", description: "Reach level 20", unlocked: false },
   ];
-  console.log('currentView', currentView)
 
   if (currentView === "space-game") {
     return (
